@@ -1,4 +1,8 @@
 /** @type {import('next').NextConfig} */
-const nextConfig = {}
+const nextConfig = {
+  images: {
+    domains: ["accomplished-narwhal-57.convex.cloud"],
+  },
+};
 
-module.exports = nextConfig
+module.exports = nextConfig;
