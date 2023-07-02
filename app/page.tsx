@@ -14,12 +14,22 @@ export default async function Home() {
     <>
       {outfits?.map((outfit) => (
         <div key={outfit._id}>
-          <h1 className="mt-5">
-            <span className="text-4xl font-bold">{outfit?.title}</span>{" "}
-            <span className="text-xl italic font-thin">
-              by {outfit?.author}
-            </span>
-          </h1>
+          <div className="flex flex-row items-center ml-2 mr-5">
+            <h1 className="mt-5">
+              <span className="text-4xl font-bold">{outfit?.title}</span>{" "}
+              <span className="text-xl italic font-thin">
+                by {outfit?.author}
+              </span>
+            </h1>
+            <div className="flex-grow"></div>
+            <div className="text-3xl">
+              $
+              {outfit?.products?.reduce(
+                (acc, product) => acc + (product?.price ?? 0),
+                0
+              )}
+            </div>
+          </div>
           <ul role="list" className="flex flex-row overflow-x-scroll gap-2 m-2">
             {outfit.products.map((product) => (
               <li key={product._id}>

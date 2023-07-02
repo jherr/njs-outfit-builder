@@ -14,7 +14,7 @@ import type {
   FilterApi,
   FunctionReference,
 } from "convex/server";
-import type * as http from "../http";
+import type * as images from "../images";
 import type * as outfits from "../outfits";
 import type * as products from "../products";
 
@@ -27,7 +27,7 @@ import type * as products from "../products";
  * ```
  */
 declare const fullApi: ApiFromModules<{
-  http: typeof http;
+  images: typeof images;
   outfits: typeof outfits;
   products: typeof products;
 }>;
