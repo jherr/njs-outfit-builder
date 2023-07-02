@@ -1,7 +1,6 @@
 const fs = require("fs");
 
-// const UPLOAD_URL = "https://accomplished-narwhal-57.convex.site/addProduct";
-const UPLOAD_URL = "https://adamant-dog-760.convex.site/addProduct";
+const UPLOAD_URL = `${process.env.SITE_URL}/addProduct`;
 
 const PRODUCTS = [
   {
