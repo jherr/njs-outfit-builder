@@ -16,9 +16,6 @@ export default function Header() {
           <h1 className="text-2xl ml-4">Create</h1>
         </Link>
       )}
-      <Link href="/products">
-        <h1 className="text-2xl ml-4">Products</h1>
-      </Link>
       <div className="flex-grow" />
       {user && (
         <div>

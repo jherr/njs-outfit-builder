@@ -1,13 +1,15 @@
-"use client";
-
-import { useQuery } from "convex/react";
+import { ConvexHttpClient } from "convex/browser";
 
 import { api } from "@/convex/_generated/api";
-
 import ProductCard from "@/app/(components)/ProductCard";
 
-export default function Home() {
-  const outfits = useQuery(api.outfits.get);
+export const dynamic = "force-dynamic";
+
+const convex = new ConvexHttpClient(process.env.NEXT_PUBLIC_CONVEX_URL ?? "");
+
+export default async function Home() {
+  const outfits = await convex.query(api.outfits.get);
+
   return (
     <>
       {outfits?.map((outfit) => (

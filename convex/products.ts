@@ -2,8 +2,9 @@ import { query, mutation } from "./_generated/server";
 import { v } from "convex/values";
 
 export const get = query(async ({ db, storage }) => {
+  const products = await db.query("products").collect();
   return Promise.all(
-    (await db.query("products").collect()).map(async (product) => ({
+    products.map(async (product) => ({
       ...product,
       image: (await storage.getUrl(product.imageId)) ?? "",
     }))

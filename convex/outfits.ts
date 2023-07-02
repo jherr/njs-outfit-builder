@@ -2,20 +2,27 @@ import { query, mutation } from "./_generated/server";
 import { v } from "convex/values";
 
 export const get = query(async ({ db, storage }) => {
+  const outfits = await db.query("outfits").order("desc").take(10);
+
   return Promise.all(
-    (await db.query("outfits").collect()).map(async (outfit) => ({
-      ...outfit,
-      products: await Promise.all(
+    outfits.map(async (outfit) => {
+      const products = await Promise.all(
         outfit.products.map(async (id) => {
           const product = await db.get(id);
+          const image = await storage.getUrl(product?.imageId ?? "");
+
           return {
             ...product,
-            image: await storage.getUrl(product?.imageId ?? ""),
+            image,
           };
         })
-      ),
-      author: outfit.author,
-    }))
+      );
+
+      return {
+        ...outfit,
+        products,
+      };
+    })
   );
 });
 

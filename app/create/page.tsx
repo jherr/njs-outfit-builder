@@ -1,7 +1,8 @@
 "use client";
-import { useState, useEffect, useMemo } from "react";
+import { useReducer, useEffect, useMemo } from "react";
 import { useQuery, useMutation } from "convex/react";
 import { useUser } from "@clerk/clerk-react";
+import { useRouter } from "next/navigation";
 
 import { api } from "@/convex/_generated/api";
 import { Id } from "@/convex/_generated/dataModel";
@@ -9,10 +10,24 @@ import ProductSelector from "@/app/(components)/ProductSelector";
 
 const CreatePage = () => {
   const products = useQuery(api.products.get);
-  const [shoeId, setShoeId] = useState<Id<"products">>();
-  const [shirtId, setShirtId] = useState<Id<"products">>();
-  const [bandId, setBandId] = useState<Id<"products">>();
-  const [title, setTitle] = useState<string>("");
+  type State = {
+    shoe: Id<"products">;
+    shirt: Id<"products">;
+    band: Id<"products">;
+    title: string;
+  };
+  const [state, dispatch] = useReducer(
+    (state: State, update: Partial<State>) => ({
+      ...state,
+      ...update,
+    }),
+    {
+      shoe: "" as Id<"products">,
+      shirt: "" as Id<"products">,
+      band: "" as Id<"products">,
+      title: "",
+    }
+  );
 
   const user = useUser();
 
@@ -32,10 +47,14 @@ const CreatePage = () => {
   );
 
   useEffect(() => {
-    setShoeId(shoes?.[0]?._id);
-    setShirtId(shirts?.[0]?._id);
-    setBandId(bands?.[0]?._id);
+    dispatch({
+      shoe: shoes?.[0]?._id,
+      shirt: shirts?.[0]?._id,
+      band: bands?.[0]?._id,
+    });
   }, [shoes, shirts, bands]);
+
+  const router = useRouter();
 
   return (
     <div>
@@ -44,18 +63,18 @@ const CreatePage = () => {
         <>
           <ProductSelector
             products={shoes}
-            productId={shoeId!}
-            onChange={(id) => setShoeId(id)}
+            productId={state.shoe}
+            onChange={(shoe) => dispatch({ shoe })}
           />
           <ProductSelector
             products={shirts}
-            productId={shirtId!}
-            onChange={(id) => setShirtId(id)}
+            productId={state.shirt}
+            onChange={(shirt) => dispatch({ shirt })}
           />
           <ProductSelector
             products={bands}
-            productId={bandId!}
-            onChange={(id) => setBandId(id)}
+            productId={state.band!}
+            onChange={(band) => dispatch({ band })}
           />
         </>
       )}
@@ -64,13 +83,17 @@ const CreatePage = () => {
           <input
             type="text"
             placeholder="Name your outfit"
-            value={title}
-            onChange={(e) => setTitle(e.target.value)}
+            value={state.title}
+            onChange={(e) => dispatch({ title: e.target.value })}
             className="flex-grow bg-gray-800 text-white border border-gray-700 rounded-lg py-2 px-4 focus:outline-none focus:border-blue-500"
           />
           <button
-            onClick={() => {
-              addOutfit({ products: [shoeId!, shirtId!, bandId!], title });
+            onClick={async () => {
+              await addOutfit({
+                products: [state.shoe, state.shirt, state.band],
+                title: state.title,
+              });
+              router.push("/");
             }}
             className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
           >
