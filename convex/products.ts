@@ -1,14 +1,13 @@
 import { query, mutation } from "./_generated/server";
 import { v } from "convex/values";
+import { asyncMap } from "./lib/relationships";
 
 export const get = query(async ({ db, storage }) => {
   const products = await db.query("products").collect();
-  return Promise.all(
-    products.map(async (product) => ({
-      ...product,
-      image: (await storage.getUrl(product.imageId)) ?? "",
-    }))
-  );
+  return await asyncMap(products, async (product) => ({
+    ...product,
+    image: (await storage.getUrl(product.imageId)) ?? "",
+  }));
 });
 
 export const add = mutation({

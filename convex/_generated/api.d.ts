@@ -15,6 +15,7 @@ import type {
   FunctionReference,
 } from "convex/server";
 import type * as images from "../images";
+import type * as lib_relationships from "../lib/relationships";
 import type * as outfits from "../outfits";
 import type * as products from "../products";
 
@@ -28,6 +29,7 @@ import type * as products from "../products";
  */
 declare const fullApi: ApiFromModules<{
   images: typeof images;
+  "lib/relationships": typeof lib_relationships;
   outfits: typeof outfits;
   products: typeof products;
 }>;

@@ -1,29 +1,20 @@
 import { query, mutation } from "./_generated/server";
 import { v } from "convex/values";
+import { getAll, asyncMap } from "./lib/relationships";
 
 export const get = query(async ({ db, storage }) => {
   const outfits = await db.query("outfits").order("desc").take(10);
 
-  return Promise.all(
-    outfits.map(async (outfit) => {
-      const products = await Promise.all(
-        outfit.products.map(async (id) => {
-          const product = await db.get(id);
-          const image = await storage.getUrl(product?.imageId ?? "");
-
-          return {
-            ...product,
-            image,
-          };
-        })
-      );
-
-      return {
-        ...outfit,
-        products,
-      };
-    })
-  );
+  return await asyncMap(outfits, async (outfit) => {
+    const products = await getAll(db, outfit.products);
+    return {
+      ...outfit,
+      products: await asyncMap(products, async (product) => ({
+        ...product,
+        image: await storage.getUrl(product?.imageId ?? ""),
+      })),
+    };
+  });
 });
 
 export const add = mutation({
