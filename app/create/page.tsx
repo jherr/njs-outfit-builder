@@ -2,7 +2,6 @@
 import { useReducer, useEffect, useMemo } from "react";
 import { useQuery, useMutation } from "convex/react";
 import { useRouter } from "next/navigation";
-import { revalidatePath } from "next/cache";
 
 import { api } from "@/convex/_generated/api";
 import { Id } from "@/convex/_generated/dataModel";
@@ -70,7 +69,7 @@ const CreatePage = () => {
               products: [state.shoe, state.shirt, state.band],
               title: state.title,
             });
-            router.push("/", { shallow: false });
+            router.push("/");
           }}
           className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
         >
