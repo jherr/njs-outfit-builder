@@ -22,16 +22,10 @@ export const add = mutation({
     products: v.array(v.id("products")),
     title: v.string(),
   },
-  handler: async ({ db, auth }, { products, title }) => {
-    const identity = await auth.getUserIdentity();
-    if (identity == null) {
-      throw new Error("Unauthenticated call to mutation");
-    }
-
+  handler: async ({ db }, { products, title }) => {
     await db.insert("outfits", {
       products,
       title,
-      author: identity?.name ?? "",
     });
   },
 });

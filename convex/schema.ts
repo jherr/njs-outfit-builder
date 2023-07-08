@@ -9,7 +9,6 @@ export default defineSchema({
     imageId: v.string(),
   }),
   outfits: defineTable({
-    author: v.string(),
     title: v.string(),
     products: v.array(v.id("products")),
   }),

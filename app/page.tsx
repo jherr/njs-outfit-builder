@@ -17,9 +17,6 @@ export default async function Home() {
           <div className="flex flex-row items-center ml-2 mr-5">
             <h1 className="mt-5">
               <span className="text-4xl font-bold">{outfit?.title}</span>{" "}
-              <span className="text-xl italic font-thin">
-                by {outfit?.author}
-              </span>
             </h1>
             <div className="flex-grow"></div>
             <div className="text-3xl">

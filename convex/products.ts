@@ -1,5 +1,4 @@
-import { query, mutation } from "./_generated/server";
-import { v } from "convex/values";
+import { query } from "./_generated/server";
 import { asyncMap } from "./lib/relationships";
 
 export const get = query(async ({ db, storage }) => {
@@ -8,21 +7,4 @@ export const get = query(async ({ db, storage }) => {
     ...product,
     image: (await storage.getUrl(product.imageId)) ?? "",
   }));
-});
-
-export const add = mutation({
-  args: {
-    imageId: v.string(),
-    title: v.string(),
-    type: v.string(),
-    price: v.number(),
-  },
-  handler: async ({ db }, { imageId, title, price, type }) => {
-    await db.insert("products", {
-      title,
-      type,
-      price,
-      imageId,
-    });
-  },
 });
