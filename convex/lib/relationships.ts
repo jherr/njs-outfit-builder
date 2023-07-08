@@ -10,7 +10,7 @@ import { DatabaseReader } from "../_generated/server";
  * @returns
  */
 export async function asyncMap<FromType, ToType>(
-  list: Iterable<FromType>,
+  list: FromType[],
   asyncTransform: (item: FromType) => Promise<ToType>
 ): Promise<ToType[]> {
   const promises: Promise<ToType>[] = [];
