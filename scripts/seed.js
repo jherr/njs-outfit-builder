@@ -5,94 +5,79 @@ const PRODUCTS = [
   {
     title: "CodeCuff",
     price: 9.99,
-    type: "band",
     image: "images/band-1.jpeg",
   },
   {
-    title: "DevLink",
-    price: 9.99,
-    type: "band",
-    image: "images/band-2.jpeg",
-  },
-  {
-    title: "SyntaxStrap",
-    price: 9.99,
-    type: "band",
-    image: "images/band-3.jpeg",
-  },
-  {
-    title: "CodeChrono",
-    price: 9.99,
-    type: "band",
-    image: "images/band-4.jpeg",
+    title: "BinaryBoost",
+    price: 49.99,
+    image: "images/shoe-7.jpeg",
   },
 
   {
     title: "Code Breaker",
     price: 29.99,
-    type: "shirt",
     image: "images/shirt-1.jpeg",
-  },
-  {
-    title: "Hello World",
-    price: 19.99,
-    type: "shirt",
-    image: "images/shirt-2.jpeg",
-  },
-  {
-    title: "Binary Brigade",
-    price: 24.99,
-    type: "shirt",
-    image: "images/shirt-3.jpeg",
-  },
-  {
-    title: "Byte Me",
-    price: 34.99,
-    type: "shirt",
-    image: "images/shirt-4.jpeg",
-  },
-
-  {
-    title: "ByteKicks",
-    price: 39.99,
-    type: "shoes",
-    image: "images/shoe-1.jpeg",
-  },
-  {
-    title: "CodeSole",
-    price: 39.99,
-    type: "shoes",
-    image: "images/shoe-2.jpeg",
-  },
-  {
-    title: "HackHightops",
-    price: 49.99,
-    type: "shoes",
-    image: "images/shoe-3.jpeg",
-  },
-  {
-    title: "AlgorithmAir",
-    price: 39.99,
-    type: "shoes",
-    image: "images/shoe-4.jpeg",
-  },
-  {
-    title: "SyntaxSneakers",
-    price: 49.99,
-    type: "shoes",
-    image: "images/shoe-5.jpeg",
   },
   {
     title: "CodeCrafters",
     price: 39.99,
-    type: "shoes",
     image: "images/shoe-6.jpeg",
   },
   {
-    title: "BinaryBoost",
+    title: "DevLink",
+    price: 9.99,
+    image: "images/band-2.jpeg",
+  },
+  {
+    title: "AlgorithmAir",
+    price: 39.99,
+    image: "images/shoe-4.jpeg",
+  },
+  {
+    title: "Binary Brigade",
+    price: 24.99,
+    image: "images/shirt-3.jpeg",
+  },
+  {
+    title: "CodeSole",
+    price: 39.99,
+    image: "images/shoe-2.jpeg",
+  },
+  {
+    title: "SyntaxStrap",
+    price: 9.99,
+    image: "images/band-3.jpeg",
+  },
+  {
+    title: "ByteKicks",
+    price: 39.99,
+    image: "images/shoe-1.jpeg",
+  },
+  {
+    title: "Byte Me",
+    price: 34.99,
+    image: "images/shirt-4.jpeg",
+  },
+
+  {
+    title: "HackHightops",
     price: 49.99,
-    type: "shoes",
-    image: "images/shoe-7.jpeg",
+    image: "images/shoe-3.jpeg",
+  },
+  {
+    title: "SyntaxSneakers",
+    price: 49.99,
+    image: "images/shoe-5.jpeg",
+  },
+  {
+    title: "Hello World",
+    price: 19.99,
+    image: "images/shirt-2.jpeg",
+  },
+  {
+    title: "CodeChrono",
+    price: 9.99,
+    image: "images/band-4.jpeg",
   },
 ];
 

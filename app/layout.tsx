@@ -1,8 +1,8 @@
 import "./globals.css";
 import { Inter } from "next/font/google";
+import Link from "next/link";
 
 import ConvexClientProvider from "./(components)/ClientProvider";
-import Header from "./(components)/Header";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -20,7 +20,14 @@ export default function RootLayout({
     <ConvexClientProvider>
       <html lang="en">
         <body className={inter.className}>
-          <Header />
+          <header className="flex items-center p-4 shadow-md shadow-violet-300 rounded-b-xl bg-violet-800">
+            <Link href="/">
+              <h1 className="text-2xl font-bold">Outfit Builder</h1>
+            </Link>
+            <Link href="/create">
+              <h1 className="text-2xl ml-4">Create</h1>
+            </Link>
+          </header>
           <div className="p-2">{children}</div>
         </body>
       </html>

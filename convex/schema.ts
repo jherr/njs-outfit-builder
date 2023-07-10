@@ -5,7 +5,6 @@ export default defineSchema({
   products: defineTable({
     price: v.float64(),
     title: v.string(),
-    type: v.string(),
     imageId: v.string(),
   }),
   outfits: defineTable({
