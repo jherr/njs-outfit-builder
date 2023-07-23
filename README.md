@@ -22,9 +22,6 @@ CONVEX_DEPLOYMENT=********** # convex development deployment key
 
 NEXT_PUBLIC_CONVEX_URL=********** # convex development deployment cloud url
 NEXT_PUBLIC_CONVEX_SITE_URL=********* # convex development deployment site url
-
-NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=********** # Clerk publishable key
-CLERK_SECRET_KEY=********* # Clerk secret key
 ```
 
 Install:
@@ -46,6 +43,10 @@ npm run dev
 ```
 
 To seed the product inventory:
+
+The seeding script uses the internal server function in `convex/images.ts` to operator. You'll need to copy that file from this repo into your project to use it. Once the products are seeded you can remove it.
+
+Clear the existing products table in the Convex dashboard and run:
 
 ```bash
 node scripts/seed.js

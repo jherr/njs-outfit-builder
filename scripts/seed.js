@@ -155,9 +155,9 @@ const uploadProduct = async (title, price, type, image) => {
     );
   }
   fs.writeFileSync(
-    "products.jsonl",
+    "products-with-images.jsonl",
     data.map((d) => JSON.stringify(d)).join("\n")
   );
-  await importProducts("products.jsonl");
-  fs.unlinkSync("products.jsonl");
+  await importProducts("products-with-images.jsonl");
+  fs.unlinkSync("products-with-images.jsonl");
 })();
