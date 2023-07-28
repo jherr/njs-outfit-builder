@@ -1,5 +1,5 @@
-import { internalMutation } from "./_generated/server";
+import { mutation } from "./_generated/server";
 
-export const getUploadUrl = internalMutation(async ({ storage }) => {
-  return await storage.generateUploadUrl();
+export const getUploadUrl = mutation(async (ctx) => {
+  return await ctx.storage.generateUploadUrl();
 });
